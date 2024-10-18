@@ -1,23 +1,15 @@
-import Link from 'next/link';
 import React from 'react';
 
-
-const BlogsPage = () => {
+const PhoneDetails = ({ params }) => {
+    // console.log(params.slug);
+    const { title, description } = phones.find(phone => phone.slug === params.slug)
     return (
-        <div className='grid grid-cols-5 gap-5'>
-            {
-                phones.map((phone) => (<div key={phone.slug} className='border-2 bg-sky-50 p-2 text-center space-y-2'>
-                    <h1 className='font-bold text-lg'>{phone.title}</h1>
-                    <p>{phone.description}</p>
-                    <button className='border px-2 py-1 rounded-lg bg-sky-600 text-white hover:bg-sky-500'>
-                        <Link href={`/blogs/${phone.slug}`}>View Details</Link>
-                    </button>
-                </div>))
-            }
+        <div className='text-center space-y-3'>
+            <h1 className='font-bold text-3xl'>{title}</h1>
+            <p>{description}</p>
         </div>
     );
 };
-
 
 const phones = [
     {
@@ -97,4 +89,4 @@ const phones = [
     }
 ]
 
-export default BlogsPage;
+export default PhoneDetails;
