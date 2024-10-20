@@ -29,6 +29,12 @@ function CalendarApp() {
                 start: '2024-10-24 12:30',
                 end: '2024-10-24 14:00',
             },
+            {
+                id: '2',
+                title: 'Event 2',
+                start: '2024-10-24 02:30',
+                end: '2024-10-24 14:00',
+            },
         ],
     }, plugins)
 
