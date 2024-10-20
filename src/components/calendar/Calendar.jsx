@@ -1,49 +1,42 @@
 'use client'
+// import { ScheduleXCalendar, useNextCalendarApp } from '@schedule-x/react/dist/index'
+
+import { useNextCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
+import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop'
+import { createEventModalPlugin } from '@schedule-x/event-modal'
+
 
 import {
-    Week, Month, Agenda, ScheduleComponent, ViewsDirective, ViewDirective, EventSettingsModel, ResourcesDirective, ResourceDirective, Inject, Resize, DragAndDrop
-} from '@syncfusion/ej2-react-schedule';
+    createViewDay,
+    createViewMonthAgenda,
+    createViewMonthGrid,
+    createViewWeek,
+} from '@schedule-x/calendar'
 
-import timelineResourceData from './datasource';
+import { createEventsServicePlugin } from '@schedule-x/events-service'
 
-const Calendar = () => {
+import '@schedule-x/theme-default/dist/index.css'
 
-    const eventSettings = { dataSource: timelineResourceData };
-    const group = { byGroupID: false, resources: ['Projects', 'Categories'] };
+function CalendarApp() {
+    const plugins = [createEventsServicePlugin(), createDragAndDropPlugin(), createEventModalPlugin()]
 
-    const projectData = [
-        { text: 'PROJECT 1', id: 1, color: '#cb6bb2' },
-        { text: 'PROJECT 2', id: 2, color: '#56ca85' },
-        { text: 'PROJECT 3', id: 3, color: '#df5286' },
-    ];
-
-    const categoryData = [
-        { text: 'Development', id: 1, color: '#1aaa55' },
-        { text: 'Testing', id: 2, color: '#7fa900' }
-    ];
-
+    const calendar = useNextCalendarApp({
+        views: [createViewDay(), createViewWeek(), createViewMonthGrid(), createViewMonthAgenda()],
+        events: [
+            {
+                id: '1',
+                title: 'Event 1',
+                start: '2024-10-24 12:30',
+                end: '2024-10-24 14:00',
+            },
+        ],
+    }, plugins)
 
     return (
-        <div>
-            <h2>Syncfusion React Schedule Component</h2>
-            <ScheduleComponent width='100%' height='550px' currentView='Month' selectedDate={new Date(2018, 3, 4)} eventSettings={eventSettings} group={group} >
-                <ViewsDirective>
-                    <ViewDirective option='Week' />
-                    <ViewDirective option='Month' />
-                    <ViewDirective option='Agenda' />
-                </ViewsDirective>
-                <ResourcesDirective>
-                    <ResourceDirective field='ProjectId' title='Choose Project' name='Projects' allowMultiple={false}
-                        dataSource={projectData} textField='text' idField='id' colorField='color'>
-                    </ResourceDirective>
-                    <ResourceDirective field='TaskId' title='Category' name='Categories' allowMultiple={true}
-                        dataSource={categoryData} textField='text' idField='id' colorField='color'>
-                    </ResourceDirective>
-                </ResourcesDirective>
-                <Inject services={[Week, Month, Agenda, Resize, DragAndDrop]} />
-            </ScheduleComponent>
+        <div className='flex items-center justify-center'>
+            <ScheduleXCalendar calendarApp={calendar} />
         </div>
-    );
-};
+    )
+}
 
-export default Calendar;
+export default CalendarApp
