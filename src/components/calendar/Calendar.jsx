@@ -41,7 +41,7 @@ function CalendarApp() {
     return (
         <div className='flex items-center justify-center'>
             <ScheduleXCalendar calendarApp={calendar} />
-            <button>Click here</button>
+            {/* <button>Click here</button> */}
         </div>
     )
 }
