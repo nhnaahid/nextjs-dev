@@ -4,14 +4,15 @@ const user = true;
 
 export const middleware = (request) => {
     const { pathname } = request.nextUrl;
-    const cookies = request.cookies.get('token')
+    const cookie = request.cookies.get('token');
 
     // console.log(pathname);
+    // console.log(cookie);
 
     if (pathname === '/blogs')
         return NextResponse.next();
 
-    if (!user || !cookies) {
+    if (!user || !cookie) {
         return NextResponse.redirect(new URL('/login', request.url))
     }
 
