@@ -34,7 +34,7 @@ const Navbar = () => {
     ]
 
     const handleLogin = () => {
-        router.push('/about');
+        router.push('/login');
     }
     if (!pathName.includes('dashboard') && !pathName.includes('signin') && !pathName.includes('signup')) {
         return (
