@@ -16,6 +16,10 @@ const Navbar = () => {
             path: '/about'
         },
         {
+            title: 'Meals',
+            path: '/meals'
+        },
+        {
             title: 'Posts',
             path: '/posts'
         },

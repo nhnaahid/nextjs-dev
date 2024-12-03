@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const PostPage = async () => {
     const posts = await getPosts();
-    console.log(posts);
+    // console.log(posts);
     return (
         <div className="grid grid-cols-4 gap-3">
             {
