@@ -6,7 +6,7 @@ export const middleware = (request) => {
     const { pathname } = request.nextUrl;
     const cookie = request.cookies.get('token');
 
-    // console.log(pathname);
+    console.log(pathname);
     // console.log(cookie);
 
     if (pathname === '/blogs')
