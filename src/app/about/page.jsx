@@ -2,7 +2,7 @@ import AboutContent from "@/components/about/AboutContent";
 import Link from "next/link";
 
 const getTime = async () => {
-    const res = await fetch('http://localhost:3000/time', {cache: 'no-store'})
+    const res = await fetch('http://localhost:3000/time', { next: { revalidate: 5 } })
     const data = await res.json();
     console.log(data);
     return data.currentTime;
