@@ -1,5 +1,5 @@
 export async function GET() {
     return Response.json({
-        message: "Hello Users"
+        message: "Hello Users from Server"
     })
 }
